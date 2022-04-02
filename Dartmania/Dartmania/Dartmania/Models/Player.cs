@@ -5,7 +5,7 @@ using SQLite;
 
 namespace Dartmania.Models
 {
-    class Player
+    public class Player
     {
         [PrimaryKey, AutoIncrement]
         public int Id { get; set; }

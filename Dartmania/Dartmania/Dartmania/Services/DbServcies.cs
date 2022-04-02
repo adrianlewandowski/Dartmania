@@ -42,6 +42,14 @@ namespace Dartmania.Services
             await Init();
         }
 
+        public static async Task<IEnumerable<Player>> GetPlayersList()
+        {
+            await Init();
+
+            var players_list = await db.Table<Player>().ToListAsync();
+            return players_list;
+        }
+
         public static async Task GetPlayerScores(int id)
         {
             await Init();

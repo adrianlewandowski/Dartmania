@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:Dartmania.ViewModels"
+             x:Class="Dartmania.Views.PlayersPage"
+             BackgroundColor="#2c2c2c"
+             >
+    <ContentPage.BindingContext>
+        <local:PlayersViewModel/>
+    </ContentPage.BindingContext>
+    <Grid>
+        <ListView
+        x:Name="PlayersList"
+        ItemsSource="{Binding Player}"
+        BackgroundColor="Transparent">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ImageCell Text="{Binding Name}"/>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <ScrollView Grid.Row="1">
+            <StackLayout Orientation="Vertical" Padding="30,24,30,24" Spacing="10">
+                <Button Margin="0,10,0,0" Text="Dodaj gracza"
+                        BackgroundColor="#ff6740"
+                        TextColor="White"
+                        Clicked="AddPlayer"
+                        Command="{Binding }"/>
+            </StackLayout>
+        </ScrollView>
+    </Grid>
+</ContentPage>
