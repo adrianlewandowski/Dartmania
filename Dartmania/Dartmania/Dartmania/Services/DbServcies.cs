@@ -37,6 +37,13 @@ namespace Dartmania.Services
             await db.InsertAsync(player);
         }
 
+        public static async Task RemovePlayer(int id)
+        {
+            await Init();
+
+            await db.DeleteAsync<Player>(id);
+        }
+
         public static async Task GetPlayer(string name)
         {
             await Init();
@@ -70,5 +77,6 @@ namespace Dartmania.Services
         {
             await Init();
         }
+
     }
 }
