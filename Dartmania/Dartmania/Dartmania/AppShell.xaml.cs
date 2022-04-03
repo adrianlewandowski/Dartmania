@@ -1,5 +1,6 @@
 ﻿using Dartmania.ViewModels;
 using Dartmania.Views;
+using Dartmania.Views.Player;
 using System;
 using System.Collections.Generic;
 using Xamarin.Forms;
@@ -11,8 +12,7 @@ namespace Dartmania
         public AppShell()
         {
             InitializeComponent();
-            Routing.RegisterRoute(nameof(ItemDetailPage), typeof(ItemDetailPage));
-            Routing.RegisterRoute(nameof(NewItemPage), typeof(NewItemPage));
+            Routing.RegisterRoute(nameof(AddPlayerPage), typeof(AddPlayerPage));
         }
 
     }

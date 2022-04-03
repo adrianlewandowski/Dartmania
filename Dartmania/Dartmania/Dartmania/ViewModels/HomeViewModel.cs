@@ -5,7 +5,7 @@ using Xamarin.Forms;
 
 namespace Dartmania.ViewModels
 {
-    public class HomeViewModel : BaseViewModel
+    public class HomeViewModel : ViewModelBase
     {
         public HomeViewModel()
         {

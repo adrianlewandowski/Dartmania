@@ -2,7 +2,12 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:Dartmania.ViewModels"
+             x:Name="PlayerPage"
              x:Class="Dartmania.Views.PlayersPage"
+             xmlns:model="clr-namespace:Dartmania.Models"
+             xmlns:viewmodels="clr-namespace:Dartmania.ViewModels"
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+             x:DataType="local:PlayersViewModel"
              BackgroundColor="#2c2c2c"
              >
     <ContentPage.BindingContext>
@@ -10,12 +15,19 @@
     </ContentPage.BindingContext>
     <Grid>
         <ListView
-        x:Name="PlayersList"
-        ItemsSource="{Binding Player}"
-        BackgroundColor="Transparent">
+            x:Name="PlayersList"
+            IsRefreshing="{Binding IsBusy, Mode=OneWay}"
+            RefreshCommand="{Binding RefreshCommand}"
+            ItemsSource="{Binding Player}"
+            BackgroundColor="Transparent"
+            SelectionMode="Single"
+            CachingStrategy="RecycleElement">
             <ListView.ItemTemplate>
-                <DataTemplate>
-                    <ImageCell Text="{Binding Name}"/>
+                <DataTemplate x:DataType="model:Player">
+                    <TextCell
+                        Text="{Binding Name}"
+                        TextColor="White"
+                    />
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
@@ -24,8 +36,7 @@
                 <Button Margin="0,10,0,0" Text="Dodaj gracza"
                         BackgroundColor="#ff6740"
                         TextColor="White"
-                        Clicked="AddPlayer"
-                        Command="{Binding }"/>
+                        Command="{Binding AddPlayerCommand}"/>
             </StackLayout>
         </ScrollView>
     </Grid>

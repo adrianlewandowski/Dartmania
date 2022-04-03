@@ -1,9 +1,5 @@
-﻿using System;
+﻿using Dartmania.ViewModels;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Linq;
-using System.Threading.Tasks;
-
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -28,6 +24,13 @@ namespace Dartmania.Views
 
             //Deselect Item
             ((ListView)sender).SelectedItem = null;
+        }
+        protected override async void OnAppearing()
+        {
+            base.OnAppearing();
+            var vm = (PlayersViewModel)BindingContext;
+            if (vm.Player.Count == 0)
+                await vm.RefreshCommand.ExecuteAsync();
         }
     }
 }

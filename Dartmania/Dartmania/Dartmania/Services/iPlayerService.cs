@@ -1,17 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using Dartmania.Models;
 
 namespace Dartmania.Services
 {
-    public interface iPlayerService
+    public interface IPlayerService
     {
         Task AddPlayer(string name);
-        Task<IEnumerable<Player>> GetPlayer();
-        Task<Player> GetPlayer(int id);
+        Task<IEnumerable<Player>> GetPlayers();
+        Task<Player> GetPlayer(string name);
         Task RemovePlayer(int id);
     }
 }

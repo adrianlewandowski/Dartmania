@@ -10,24 +10,13 @@ using Xamarin.Forms.Xaml;
 namespace Dartmania.Views.Player
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class AddplayerPage : ContentPage
+    public partial class AddPlayerPage : ContentPage
     {
         public ObservableCollection<string> Items { get; set; }
 
-        public AddplayerPage()
+        public AddPlayerPage()
         {
             InitializeComponent();
-
-            Items = new ObservableCollection<string>
-            {
-                "Item 1",
-                "Item 2",
-                "Item 3",
-                "Item 4",
-                "Item 5"
-            };
-
-            MyListView.ItemsSource = Items;
         }
 
         async void Handle_ItemTapped(object sender, ItemTappedEventArgs e)

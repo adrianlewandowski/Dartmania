@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Dartmania.ViewModels
 {
-    class StatisticsViewModel : BaseViewModel
+    class StatisticsViewModel : ViewModelBase
     {
         public StatisticsViewModel()
         {

@@ -17,11 +17,11 @@
     <Compile Update="Views\HomePage.xaml.cs">
       <DependentUpon>HomePage.xaml</DependentUpon>
     </Compile>
-    <Compile Update="Views\ItemsPage.xaml.cs">
-      <DependentUpon>ItemsPage.xaml</DependentUpon>
-    </Compile>
     <Compile Update="Views\PlayersPage.xaml.cs">
       <DependentUpon>PlayersPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Player\AddplayerPage.xaml.cs">
+      <DependentUpon>AddPlayerPage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
 

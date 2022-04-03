@@ -2,16 +2,16 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewmodel="clr-namespace:Dartmania.ViewModels"
-             x:Class="Dartmania.Views.Player.AddplayerPage"
+             x:Class="Dartmania.Views.Player.AddPlayerPage"
              x:DataType="viewmodel:PlayerAddViewModel"
+             Shell.PresentationMode="Modal"
              >
     <ContentPage.BindingContext>
         <viewmodel:PlayerAddViewModel />
     </ContentPage.BindingContext>
     <ContentPage.Content>
         <StackLayout Padding="20">
-            <Label Text="Name:"
-                   Style="{StaticResource LabelMedium}"/>
+            <Label Text="Name:"/>
             <Entry Text="{Binding Name}" />
 
             <ActivityIndicator
@@ -26,8 +26,7 @@
                 HorizontalOptions="Center"
                 IsEnabled="{Binding IsNotBusy}"
                 Text="Save"
-                VerticalOptions="EndAndExpand"
-                Style="{StaticResource ButtonOutline}"/>
+                VerticalOptions="EndAndExpand"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

@@ -6,7 +6,7 @@ using Xamarin.Forms;
 
 namespace Dartmania.ViewModels
 {
-    public class LoginViewModel : BaseViewModel
+    public class LoginViewModel : ViewModelBase
     {
         public Command LoginCommand { get; }
 

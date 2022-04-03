@@ -1,5 +1,5 @@
-﻿using Dartmania.Commands;
-using Dartmania.Services;
+﻿using Dartmania.Services;
+using MvvmHelpers.Commands;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -11,29 +11,27 @@ namespace Dartmania.ViewModels
     [QueryProperty(nameof(Name), nameof(Name))]
     public class PlayerAddViewModel : ViewModelBase
     {
-
         string name;
         public string Name { get => name; set => SetProperty(ref name, value); }
 
         public AsyncCommand SaveCommand { get; }
 
-        ICoffeeService coffeeService;
-        public AddMyCoffeeViewModel()
+        IPlayerService playerService;
+        public PlayerAddViewModel()
         {
-            Title = "Add Coffee";
+            Title = "Add Player";
             SaveCommand = new AsyncCommand(Save);
-            coffeeService = DependencyService.Get<ICoffeeService>();
+            playerService = DependencyService.Get<IPlayerService>();
         }
 
-        async Task Save()
+        public async Task Save()
         {
-            if (string.IsNullOrWhiteSpace(name) ||
-                string.IsNullOrWhiteSpace(roaster))
+            if (string.IsNullOrWhiteSpace(name))
             {
                 return;
             }
 
-            await coffeeService.AddCoffee(name, roaster);
+            await playerService.AddPlayer(name);
 
             await Shell.Current.GoToAsync("..");
         }
