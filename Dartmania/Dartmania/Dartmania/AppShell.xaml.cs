@@ -13,6 +13,7 @@ namespace Dartmania
         {
             InitializeComponent();
             Routing.RegisterRoute(nameof(AddPlayerPage), typeof(AddPlayerPage));
+            Routing.RegisterRoute(nameof(GameViewPage), typeof(GameViewPage));
         }
 
     }

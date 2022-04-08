@@ -4,7 +4,7 @@
              x:Class="Dartmania.Views.StatisticsPage"
              BackgroundColor="#2c2c2c">
   <ListView x:Name="MyListView"
-            ItemsSource="{Binding Items}"
+            ItemsSource="{Binding .}"
             ItemTapped="Handle_ItemTapped"
             CachingStrategy="RecycleElement">
     <!--Built in Cells-->

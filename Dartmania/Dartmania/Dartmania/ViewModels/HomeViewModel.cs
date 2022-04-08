@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Dartmania.Views;
+using MvvmHelpers.Commands;
+using System;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Essentials;
 using Xamarin.Forms;
@@ -7,12 +10,18 @@ namespace Dartmania.ViewModels
 {
     public class HomeViewModel : ViewModelBase
     {
+        public AsyncCommand StartGame { get; }
         public HomeViewModel()
         {
             Title = "Dartmania";
-            OpenWebCommand = new Command(async () => await Browser.OpenAsync("https://aka.ms/xamarin-quickstart"));
+            StartGame = new AsyncCommand(Start);
         }
 
+        async Task Start()
+        {
+            var route = $"{nameof(GameViewPage)}";
+            await Shell.Current.GoToAsync(route);
+        }
         public ICommand OpenWebCommand { get; }
     }
 }

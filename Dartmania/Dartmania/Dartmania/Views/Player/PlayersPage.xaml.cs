@@ -8,7 +8,6 @@ namespace Dartmania.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class PlayersPage : ContentPage
     {
-        public ObservableCollection<string> Items { get; set; }
 
         public PlayersPage()
         {

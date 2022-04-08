@@ -12,7 +12,6 @@ namespace Dartmania.Views.Player
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class AddPlayerPage : ContentPage
     {
-        public ObservableCollection<string> Items { get; set; }
 
         public AddPlayerPage()
         {

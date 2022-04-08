@@ -20,6 +20,7 @@ namespace Dartmania.ViewModels
         public AsyncCommand RefreshCommand { get; }
 
         public AsyncCommand AddPlayerCommand { get; }
+
         IPlayerService playerService;
         public PlayersViewModel()
         {
