@@ -3,11 +3,237 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              BackgroundColor="#2c2c2c"
              x:Class="Dartmania.Views.GameViewPage">
-    <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand"
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
-    </ContentPage.Content>
+    <StackLayout
+        Padding="10">
+        <Frame
+            BackgroundColor="#2c2c2c"
+            Padding="15"
+            Margin="0,0,0,0">
+            <Label x:Name="LblResult"
+                FontFamily="Lobster-Regular"
+                Text="510"
+                TextColor="White"
+                FontSize="60"
+                FontAttributes="Bold">
+            </Label>
+        </Frame>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <!--1 no row-->
+            <Button Grid.Row="0"
+                Grid.Column="0"
+                Text="1"
+                FontSize="Large"
+                FontAttributes="Bold"
+                x:Name="BtnClear"
+                BackgroundColor="Gray"
+                Clicked="BtnCommon_Clicked"/>
+            <Button Grid.Row="0"
+                Grid.Column="1"
+                Text="2"
+                FontSize="Large"
+                FontAttributes="Bold"
+                x:Name="BtnX"
+                BackgroundColor="Gray"
+                Clicked="BtnCommon_Clicked"/>
+            <Button Grid.Row="0"
+                Grid.Column="2"
+                Text="3"
+                FontSize="Large"
+                FontAttributes="Bold"
+                x:Name="BtnPercentage"
+                BackgroundColor="Gray"
+                Clicked="BtnCommon_Clicked"/>
+            <Button Grid.Row="0"
+                Grid.Column="3"
+                Text="4"
+                FontSize="Large"
+                FontAttributes="Bold"
+                BackgroundColor="Gray"
+                Clicked="BtnCommon_Clicked"/>
+            <Button Grid.Row="0"
+                FontSize="Large"
+                FontAttributes="Bold"
+                Grid.Column="4"
+                Text="5"
+                BackgroundColor="Gray"
+                Clicked="BtnCommon_Clicked"/>
+            <Button Grid.Row="0"
+                Text="6"
+                FontSize="Large"
+                FontAttributes="Bold"
+                Grid.Column="5"
+                BackgroundColor="Gray"
+                Clicked="BtnCommon_Clicked"/>
+            <Button Grid.Row="0"
+                Text="7"
+                FontSize="Large"
+                FontAttributes="Bold"
+                Grid.Column="6"
+                BackgroundColor="Gray"
+                Clicked="BtnCommon_Clicked"/>
+
+            <!--2 no row-->
+            <Button Grid.Row="1"
+                Grid.Column="0"
+                Text="8"
+                FontSize="Large"
+                FontAttributes="Bold"
+                WidthRequest="50"
+                BackgroundColor="Gray"
+                Clicked="BtnCommon_Clicked"/>
+            <Button
+                Grid.Row="1"
+                Grid.Column="1"
+                Text="9"
+                FontSize="Large"
+                FontAttributes="Bold"
+                BackgroundColor="Gray"
+                Clicked="BtnCommon_Clicked"/>
+            <Button
+                Grid.Row="1"
+                Grid.Column="2"
+                Text="10"
+                FontSize="Large"
+                FontAttributes="Bold"
+                BackgroundColor="Gray"
+                Clicked="BtnCommon_Clicked"/>
+            <Button
+                Grid.Row="1"
+                Grid.Column="3"
+                Text="11"
+                FontSize="Large"
+                FontAttributes="Bold"
+                BackgroundColor="Gray"
+                Clicked="BtnCommon_Clicked"/>
+            <Button Grid.Row="1"
+                Grid.Column="4"
+                Text="12"
+                FontSize="Large"
+                FontAttributes="Bold"
+                BackgroundColor="Gray"
+                Clicked="BtnCommon_Clicked"/>
+            <Button Grid.Row="1"
+                Grid.Column="5"
+                Text="13"
+                FontSize="Large"
+                FontAttributes="Bold"
+                BackgroundColor="Gray"
+                Clicked="BtnCommon_Clicked"/>
+            <Button Grid.Row="1"
+                Grid.Column="6"
+                Text="14"
+                FontSize="Large"
+                FontAttributes="Bold"
+                BackgroundColor="Gray"
+                Clicked="BtnCommon_Clicked"/>
+            <!--3 no row-->
+            <Button
+                Grid.Row="2"
+                Grid.Column="0"
+                Text="15"
+                FontSize="Large"
+                FontAttributes="Bold"
+                BackgroundColor="Gray"
+                Clicked="BtnCommon_Clicked"/>
+            <Button
+                Grid.Row="2"
+                Grid.Column="1"
+                Text="16"
+                FontSize="Large"
+                FontAttributes="Bold"
+                BackgroundColor="Gray"
+                Clicked="BtnCommon_Clicked"/>
+            <Button
+                Grid.Row="2"
+                Grid.Column="2"
+                Text="17"
+                FontSize="Large"
+                FontAttributes="Bold"
+                BackgroundColor="Gray"
+                Clicked="BtnCommon_Clicked"/>
+            <Button
+                Grid.Row="2"
+                Grid.Column="3"
+                Text="18"
+                FontSize="Large"
+                FontAttributes="Bold"
+                BackgroundColor="Gray"
+                Clicked="BtnCommon_Clicked"/>
+            <Button Grid.Row="2"
+                Grid.Column="4"
+                Text="19"
+                FontSize="Large"
+                FontAttributes="Bold"
+                BackgroundColor="Gray"
+                />
+            <Button Grid.Row="2"
+                Grid.Column="5"
+                Text="20"
+                FontSize="Large"
+                FontAttributes="Bold"
+                BackgroundColor="Gray"
+                Clicked="BtnCommon_Clicked"/>
+            <Button Grid.Row="2"
+                Grid.Column="6"
+                Text="25"
+                FontSize="Large"
+                FontAttributes="Bold"
+                BackgroundColor="Gray"
+                Clicked="BtnCommon_Clicked"/>
+            <!--4 no row-->
+            <Button
+                Grid.Row="3"
+                Grid.Column="0"
+                Text="0"
+                FontSize="Large"
+                FontAttributes="Bold"
+                BackgroundColor="Gray"
+                Clicked="BtnCommon_Clicked"/>
+            <Button
+                Grid.Row="3"
+                Grid.Column="1"
+                Grid.ColumnSpan="2"
+                Text="DOUBLE"
+                FontSize="Large"
+                FontAttributes="Bold"
+                BackgroundColor="Orange"
+                Clicked="Btn_Multiply"/>
+            <Button
+                Grid.Row="3"
+                Grid.Column="3"
+                Grid.ColumnSpan="2"
+                Text="TRIPLE"
+                FontSize="Large"
+                FontAttributes="Bold"
+                BackgroundColor="DarkOrange"
+                Clicked="Btn_Multiply"/>
+            <Button
+                Grid.Row="3"
+                Grid.Column="5"
+                Grid.ColumnSpan="2"
+                Text="←"
+                FontSize="Large"
+                FontAttributes="Bold"
+                BackgroundColor="Red"
+                Clicked="BtnClear_Clicked"/>
+        </Grid>
+
+
+    </StackLayout>
+
 </ContentPage>
