@@ -1,28 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿using Dartmania.Models;
+using MvvmHelpers;
+using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using System.Linq;
 
 namespace Dartmania.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class GameViewPage : ContentPage
     {
+        public GameModel currentGame = new GameModel();
         public GameViewPage()
         {
+
             InitializeComponent();
         }
-        private decimal firstNumner;
-        private string operatorName;
         private int multiply;
         private void BtnCommon_Clicked(object sender, EventArgs e)
         {
             var button = sender as Button;
-            int score = Convert.ToInt32(LblResult.Text);
             int CurrentThrow = Convert.ToInt32(button.Text);
             if(multiply == 3)
             {
@@ -31,16 +28,29 @@ namespace Dartmania.Views
             {
                 CurrentThrow *= 2;
             }
-            score -= CurrentThrow;
-            LblResult.Text = Convert.ToString(score);
+            currentGame.ThrowsPlayer1.Add(CurrentThrow);
+            currentGame.Score1 -= CurrentThrow;
+            if(currentGame.Score1 == 0)
+            {
+                Alert();
+            }
+            LblResult.Text = Convert.ToString(currentGame.Score1);
             multiply = 1;
         }
 
+        async void Alert()
+        {
+            await DisplayAlert("Game Ended", "", "Return to menu");
+        }
         private void BtnClear_Clicked(object sender, EventArgs e)
         {
-            LblResult.Text = "0";
-            multiply = 1;
-            firstNumner = 0;
+            if(currentGame.ThrowsPlayer1.Count >= 0)
+            {
+                var lastScore = currentGame.ThrowsPlayer1.Last();
+                currentGame.Score1 += lastScore;
+                currentGame.ThrowsPlayer1.RemoveAt(currentGame.ThrowsPlayer1.Count - 1);
+                LblResult.Text = Convert.ToString(currentGame.Score1);
+            }
         }
 
         private void BtnX_Clicked(object sender, EventArgs e)
