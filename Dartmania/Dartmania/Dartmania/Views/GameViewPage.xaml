@@ -1,17 +1,22 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodel="clr-namespace:Dartmania.ViewModels"
              BackgroundColor="#2c2c2c"
-             x:Class="Dartmania.Views.GameViewPage">
+             x:Class="Dartmania.Views.GameViewPage"
+             x:DataType="viewmodel:GameViewModel"
+             Shell.PresentationMode="Modal">
     <StackLayout
-        Padding="10">
+        Padding="10"
+        Orientation="Vertical"
+        VerticalOptions="End"
+        x:Name="firstStacklayout">
         <Frame
             BackgroundColor="#2c2c2c"
             Padding="15"
             Margin="0,0,0,0">
             <Label x:Name="LblResult"
-                FontFamily="Lobster-Regular"
-                Text="510"
+                Text="501"
                 TextColor="White"
                 FontSize="60"
                 FontAttributes="Bold">
@@ -180,7 +185,7 @@
                 FontSize="Large"
                 FontAttributes="Bold"
                 BackgroundColor="Gray"
-                />
+                Clicked="BtnCommon_Clicked"/>
             <Button Grid.Row="2"
                 Grid.Column="5"
                 Text="20"
