@@ -11,6 +11,13 @@
         Orientation="Vertical"
         VerticalOptions="End"
         x:Name="firstStacklayout">
+        <Label x:Name="LblThrows"
+                Text="| | |"
+                TextColor="Green"
+                FontSize="60"
+                FontAttributes="Bold"
+                HorizontalOptions="Center">
+        </Label>
         <Frame
             BackgroundColor="#2c2c2c"
             Padding="15"
@@ -19,7 +26,8 @@
                 Text="501"
                 TextColor="White"
                 FontSize="60"
-                FontAttributes="Bold">
+                FontAttributes="Bold"
+                HorizontalOptions="Center">
             </Label>
         </Frame>
         <Grid>
@@ -237,8 +245,15 @@
                 BackgroundColor="Red"
                 Clicked="BtnClear_Clicked"/>
         </Grid>
-
-
+        <Label x:Name="LabelFinisher"
+                Text=""
+                TextColor="White"
+                FontSize="35"
+                FontAttributes="Bold"
+                HorizontalOptions="Center"
+                YAlign="Center"
+                XAlign="Center"
+                LineBreakMode="TailTruncation">
+        </Label>
     </StackLayout>
-
 </ContentPage>

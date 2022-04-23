@@ -17,7 +17,7 @@ namespace Dartmania.Services.Points_Calculator
                     {
                         if (item2.Value + item.Value == points)
                         {
-                            result = "Aby wygrać rzuć " + item2.Key + " " + item.Key;
+                            result = "Wyrzuć " + item2.Key + " " + item.Key;
                             flag = 1;
                         }
                         if (flag == 1)
@@ -39,7 +39,7 @@ namespace Dartmania.Services.Points_Calculator
                         {
                             if (item2.Value + item.Value == points)
                             {
-                                result = "Aby wygrać rzuć " + item2.Key + " " + item.Key;
+                                result = "Wyrzuć" + item2.Key + " " + item.Key;
                                 flag = 1;
                             }
                             if (flag == 1)
@@ -62,7 +62,7 @@ namespace Dartmania.Services.Points_Calculator
                         {
                             if (item2.Value + item.Value == points)
                             {
-                                result = "Aby wygrać rzuć " + item2.Key + " " + item.Key;
+                                result = "Wyrzuć " + item2.Key + " " + item.Key;
                                 flag = 1;
                             }
                             if (flag == 1)

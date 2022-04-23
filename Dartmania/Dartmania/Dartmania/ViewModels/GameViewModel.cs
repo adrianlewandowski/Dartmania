@@ -16,6 +16,5 @@ namespace Dartmania.ViewModels
             Title = "Dartmania";
         }
 
-        public ICommand OpenWebCommand { get; }
     }
 }
