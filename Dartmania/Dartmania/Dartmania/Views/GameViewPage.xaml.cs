@@ -52,8 +52,10 @@ namespace Dartmania.Views
             }
             if ((currentGame.Score1 - CurrentThrow < 0 || currentGame.Score1 - CurrentThrow == 1) || (currentGame.Score1 - CurrentThrow == 0 && multiply != 2))
             {
-                Alert("FURA!","");
-                throwCounter = 3;
+                Alert("FURA!","Return");
+                throwCounter = 1;
+                Throw();
+                return;
             }
             else
             {
