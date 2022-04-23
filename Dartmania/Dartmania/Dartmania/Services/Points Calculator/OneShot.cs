@@ -15,11 +15,16 @@ namespace Dartmania.Services.Points_Calculator
                 {
                     if (item.Value == points)
                     {
-                        result = "Aby wygrać rzuć " + item.Key;
+                        result = "Wyrzuć " + item.Key;
                     }
                 }
             }
             return result;
+        }
+
+        internal static string calculateFinish(Dictionary<string, int> doubles, Dictionary<string, int> singles, int score1, int v)
+        {
+            throw new NotImplementedException();
         }
     }
 }
