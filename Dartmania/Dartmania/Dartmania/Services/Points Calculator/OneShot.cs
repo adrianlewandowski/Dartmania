@@ -21,10 +21,5 @@ namespace Dartmania.Services.Points_Calculator
             }
             return result;
         }
-
-        internal static string calculateFinish(Dictionary<string, int> doubles, Dictionary<string, int> singles, int score1, int v)
-        {
-            throw new NotImplementedException();
-        }
     }
 }
