@@ -41,24 +41,19 @@ namespace Dartmania.Views
         }
         private void BtnCommon_Clicked(object sender, EventArgs e)
         {
-            Throw();
             var button = sender as Button;
             int CurrentThrow = Convert.ToInt32(button.Text);
-            if(multiply == 3)
+            if (multiply == 3)
             {
                 CurrentThrow *= 3;
-            }else if(multiply == 2)
+            } else if (multiply == 2)
             {
                 CurrentThrow *= 2;
             }
-            if (currentGame.Score1 - CurrentThrow < 0 || currentGame.Score1 - CurrentThrow == 1)
+            if ((currentGame.Score1 - CurrentThrow < 0 || currentGame.Score1 - CurrentThrow == 1) || (currentGame.Score1 - CurrentThrow == 0 && multiply != 2))
             {
-                Alert("FURA!");
-            }
-            else if (currentGame.Score1 == 0)
-            {
-               Alert("Game Ended");
-               LblResult.Text = Convert.ToString(0);
+                Alert("FURA!","");
+                throwCounter = 3;
             }
             else
             {
@@ -66,19 +61,35 @@ namespace Dartmania.Views
                 currentGame.ThrowsPlayer1.Add(CurrentThrow);
                 LblResult.Text = Convert.ToString(currentGame.Score1);
             }
-            if(((currentGame.ThrowsPlayer1.Count() % 3) + 1 == 3) && (currentGame.Score1 <= 170))
+            if (currentGame.Score1 == 0 && multiply == 2)
+            {
+                var avg = Math.Round(Queryable.Average(currentGame.ThrowsPlayer1.AsQueryable()));
+
+                AlertFinish("Game Ended","Throws: " + currentGame.ThrowsPlayer1.Count() + "\n" + "Average score: " + avg,"Return");
+                currentGame.Score1 = 501;
+            }
+            Throw();
+            Counter();
+            multiply = 1;
+        }
+
+        void Counter()
+        {
+            if ((throwCounter == 3) && (currentGame.Score1 <= 170))
             {
                 LabelFinisher.Text = ThreeShots.calculateFinish(triples, doubles, singles, currentGame.Score1, (currentGame.ThrowsPlayer1.Count() % 3) + 1);
             }
-            else if(((currentGame.ThrowsPlayer1.Count() % 3) + 1 == 2) && (currentGame.Score1 <= 100))
+            else if ((throwCounter == 2) && (currentGame.Score1 <= 100))
             {
                 LabelFinisher.Text = TwoShots.calculateFinish(triples, doubles, singles, currentGame.Score1, (currentGame.ThrowsPlayer1.Count() % 3) + 1);
             }
-            else if (((currentGame.ThrowsPlayer1.Count() % 3) + 1 == 1) && (currentGame.Score1 <= 40))
+            else if ((throwCounter == 1) && (currentGame.Score1 <= 40))
             {
-                LabelFinisher.Text = OneShot.calculateFinish(doubles, singles, currentGame.Score1, (currentGame.ThrowsPlayer1.Count() % 3) + 1);
+                LabelFinisher.Text = OneShot.calculateFinish(doubles, currentGame.Score1, (currentGame.ThrowsPlayer1.Count() % 3) + 1);
+            }else if(throwCounter == 1 && (currentGame.Score1 != 0))
+            {
+                LabelFinisher.Text = ThreeShots.calculateFinish(triples, doubles, singles, currentGame.Score1, 3);
             }
-            multiply = 1;
         }
 
         void Throw()
@@ -119,15 +130,18 @@ namespace Dartmania.Views
                 LblThrows.Text = "|";
             }
         }
-
-        async void Alert(string text)
+        async void AlertFinish(string text,string text1, string text2)
         {
-            await DisplayAlert(text, "", "Return");
+            await DisplayAlert(text, text1, text2);
+        }
+        async void Alert(string text,string text2)
+        {
+            await DisplayAlert(text, "", text2);
         }
         private void BtnClear_Clicked(object sender, EventArgs e)
         {
             ThrowUndo();
-            if(currentGame.ThrowsPlayer1.Count >= 0)
+            if(currentGame.ThrowsPlayer1.Count() > 0)
             {
                 var lastScore = currentGame.ThrowsPlayer1.Last();
                 currentGame.Score1 += lastScore;
