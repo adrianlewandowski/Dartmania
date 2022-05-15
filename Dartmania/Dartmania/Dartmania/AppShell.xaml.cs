@@ -12,6 +12,7 @@ namespace Dartmania
         public AppShell()
         {
             InitializeComponent();
+            Routing.RegisterRoute(nameof(PlayerGameSoloPage), typeof(PlayerGameSoloPage));
             Routing.RegisterRoute(nameof(AddPlayerPage), typeof(AddPlayerPage));
             Routing.RegisterRoute(nameof(GameViewPage), typeof(GameViewPage));
         }
