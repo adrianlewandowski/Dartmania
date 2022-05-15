@@ -12,6 +12,7 @@ namespace Dartmania.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class GameViewPage : ContentPage
     {
+        public int flagaGracz = 1;
         public GameModel currentGame = new GameModel();
         public int throwCounter = 3;
         private string finishCounter;
@@ -41,66 +42,144 @@ namespace Dartmania.Views
         }
         private void BtnCommon_Clicked(object sender, EventArgs e)
         {
-            var button = sender as Button;
-            int CurrentThrow = Convert.ToInt32(button.Text);
-            if (multiply == 3)
+            if (flagaGracz == 1)
             {
-                CurrentThrow *= 3;
-            } else if (multiply == 2)
-            {
-                CurrentThrow *= 2;
-            }
-            if ((currentGame.Score1 - CurrentThrow < 0 || currentGame.Score1 - CurrentThrow == 1) || (currentGame.Score1 - CurrentThrow == 0 && multiply != 2))
-            {
-                Alert("FURA!","Return");
-                throwCounter = 1;
-                Throw();
-                return;
-            }
-            else
-            {
-                currentGame.Score1 -= CurrentThrow;
-                currentGame.ThrowsPlayer1.Add(CurrentThrow);
-                LblResult.Text = Convert.ToString(currentGame.Score1);
-            }
-            if (currentGame.Score1 == 0 && multiply == 2)
-            {
-                var avg = Math.Round(Queryable.Average(currentGame.ThrowsPlayer1.AsQueryable()));
+                var button = sender as Button;
+                int CurrentThrow = Convert.ToInt32(button.Text);
+                if (multiply == 3)
+                {
+                    CurrentThrow *= 3;
+                }
+                else if (multiply == 2)
+                {
+                    CurrentThrow *= 2;
+                }
+                if ((currentGame.Score1 - CurrentThrow < 0 || currentGame.Score1 - CurrentThrow == 1) || (currentGame.Score1 - CurrentThrow == 0 && multiply != 2))
+                {
+                    Alert("FURA!", "Return");
+                    throwCounter = 1;
+                    Throw();
+                    return;
+                }
+                else
+                {
+                    currentGame.Score1 -= CurrentThrow;
+                    currentGame.ThrowsPlayer1.Add(CurrentThrow);
+                    LblResult.Text = Convert.ToString(currentGame.Score1);
+                }
+                if (currentGame.Score1 == 0 && multiply == 2)
+                {
+                    var avg = Math.Round(Queryable.Average(currentGame.ThrowsPlayer1.AsQueryable()));
 
-                AlertFinish("Game Ended","Throws: " + currentGame.ThrowsPlayer1.Count() + "\n" + "Average score: " + avg,"Return");
-                currentGame.Score1 = 501;
+                    AlertFinish("Game Ended", "Throws: " + currentGame.ThrowsPlayer1.Count() + "\n" + "Average score: " + avg, "Return");
+                    currentGame.Score1 = 501;
+                }
+                Throw();
+                Counter();
+                multiply = 1;
             }
-            Throw();
-            Counter();
-            multiply = 1;
+            else 
+            {
+                var button = sender as Button;
+                int CurrentThrow = Convert.ToInt32(button.Text);
+                if (multiply == 3)
+                {
+                    CurrentThrow *= 3;
+                }
+                else if (multiply == 2)
+                {
+                    CurrentThrow *= 2;
+                }
+                if ((currentGame.Score2 - CurrentThrow < 0 || currentGame.Score2 - CurrentThrow == 1) || (currentGame.Score2 - CurrentThrow == 0 && multiply != 2))
+                {
+                    Alert("FURA!", "Return");
+                    throwCounter = 1;
+                    Throw();
+                    return;
+                }
+                else
+                {
+                    currentGame.Score2 -= CurrentThrow;
+                    currentGame.ThrowsPlayer2.Add(CurrentThrow);
+                    LblResult2.Text = Convert.ToString(currentGame.Score2);
+                }
+                if (currentGame.Score2 == 0 && multiply == 2)
+                {
+                    var avg = Math.Round(Queryable.Average(currentGame.ThrowsPlayer2.AsQueryable()));
+
+                    AlertFinish("Game Ended", "Throws: " + currentGame.ThrowsPlayer2.Count() + "\n" + "Average score: " + avg, "Return");
+                    currentGame.Score2 = 501;
+                }
+                Throw();
+                Counter();
+                multiply = 1;
+            }
         }
 
         void Counter()
         {
-            if ((throwCounter == 3) && (currentGame.Score1 <= 170))
+            if (flagaGracz == 1)
             {
-                LabelFinisher.Text = ThreeShots.calculateFinish(triples, doubles, singles, currentGame.Score1, (currentGame.ThrowsPlayer1.Count() % 3) + 1);
+                if ((throwCounter == 3) && (currentGame.Score1 <= 170))
+                {
+                    LabelFinisher.Text = ThreeShots.calculateFinish(triples, doubles, singles, currentGame.Score1, (currentGame.ThrowsPlayer1.Count() % 3) + 1);
+                }
+                else if ((throwCounter == 2) && (currentGame.Score1 <= 100))
+                {
+                    LabelFinisher.Text = TwoShots.calculateFinish(triples, doubles, singles, currentGame.Score1, (currentGame.ThrowsPlayer1.Count() % 3) + 1);
+                }
+                else if ((throwCounter == 1) && (currentGame.Score1 <= 40))
+                {
+                    LabelFinisher.Text = OneShot.calculateFinish(doubles, currentGame.Score1, (currentGame.ThrowsPlayer1.Count() % 3) + 1);
+                }
+                else if (throwCounter == 1 && (currentGame.Score1 != 0))
+                {
+                    LabelFinisher.Text = ThreeShots.calculateFinish(triples, doubles, singles, currentGame.Score1, 3);
+                }
             }
-            else if ((throwCounter == 2) && (currentGame.Score1 <= 100))
+            else 
             {
-                LabelFinisher.Text = TwoShots.calculateFinish(triples, doubles, singles, currentGame.Score1, (currentGame.ThrowsPlayer1.Count() % 3) + 1);
-            }
-            else if ((throwCounter == 1) && (currentGame.Score1 <= 40))
-            {
-                LabelFinisher.Text = OneShot.calculateFinish(doubles, currentGame.Score1, (currentGame.ThrowsPlayer1.Count() % 3) + 1);
-            }else if(throwCounter == 1 && (currentGame.Score1 != 0))
-            {
-                LabelFinisher.Text = ThreeShots.calculateFinish(triples, doubles, singles, currentGame.Score1, 3);
+                if ((throwCounter == 3) && (currentGame.Score2 <= 170))
+                {
+                    LabelFinisher.Text = ThreeShots.calculateFinish(triples, doubles, singles, currentGame.Score2, (currentGame.ThrowsPlayer2.Count() % 3) + 1);
+                }
+                else if ((throwCounter == 2) && (currentGame.Score2 <= 100))
+                {
+                    LabelFinisher.Text = TwoShots.calculateFinish(triples, doubles, singles, currentGame.Score2, (currentGame.ThrowsPlayer2.Count() % 3) + 1);
+                }
+                else if ((throwCounter == 1) && (currentGame.Score2 <= 40))
+                {
+                    LabelFinisher.Text = OneShot.calculateFinish(doubles, currentGame.Score2, (currentGame.ThrowsPlayer2.Count() % 3) + 1);
+                }
+                else if (throwCounter == 1 && (currentGame.Score2 != 0))
+                {
+                    LabelFinisher.Text = ThreeShots.calculateFinish(triples, doubles, singles, currentGame.Score2, 3);
+                }
             }
         }
 
         void Throw()
         {
+            //Color color = System.Drawing.ColorTranslator.FromHtml("#2c2c2c");
             throwCounter--;
             if (throwCounter == 0)
             {
-                throwCounter = 3;
-                LblThrows.Text = "| | |";
+                if (flagaGracz == 1)
+                {
+                    LblResult.BackgroundColor = Color.Red;
+                    LblResult2.BackgroundColor = Color.Green;
+                    flagaGracz = 2;
+                    throwCounter = 3;
+                    LblThrows.Text = "| | |";
+                }
+                else 
+                {
+                    LblResult.BackgroundColor = Color.Green;
+                    LblResult2.BackgroundColor = Color.Red;
+                    flagaGracz = 1;
+                    throwCounter = 3;
+                    LblThrows.Text = "| | |";
+                }
             }
             if (throwCounter == 2)
             {
@@ -142,13 +221,27 @@ namespace Dartmania.Views
         }
         private void BtnClear_Clicked(object sender, EventArgs e)
         {
-            ThrowUndo();
-            if(currentGame.ThrowsPlayer1.Count() > 0)
+            if (flagaGracz == 1)
             {
-                var lastScore = currentGame.ThrowsPlayer1.Last();
-                currentGame.Score1 += lastScore;
-                currentGame.ThrowsPlayer1.RemoveAt(currentGame.ThrowsPlayer1.Count - 1);
-                LblResult.Text = Convert.ToString(currentGame.Score1);
+                ThrowUndo();
+                if (currentGame.ThrowsPlayer1.Count() > 0)
+                {
+                    var lastScore = currentGame.ThrowsPlayer1.Last();
+                    currentGame.Score1 += lastScore;
+                    currentGame.ThrowsPlayer1.RemoveAt(currentGame.ThrowsPlayer1.Count - 1);
+                    LblResult.Text = Convert.ToString(currentGame.Score1);
+                }
+            }
+            else 
+            {
+                ThrowUndo();
+                if (currentGame.ThrowsPlayer2.Count() > 0)
+                {
+                    var lastScore = currentGame.ThrowsPlayer2.Last();
+                    currentGame.Score2 += lastScore;
+                    currentGame.ThrowsPlayer2.RemoveAt(currentGame.ThrowsPlayer2.Count - 1);
+                    LblResult2.Text = Convert.ToString(currentGame.Score2);
+                }
             }
         }
 

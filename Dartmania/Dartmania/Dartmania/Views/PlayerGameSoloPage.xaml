@@ -3,8 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewmodel="clr-namespace:Dartmania.ViewModels"
              BackgroundColor="#2c2c2c"
-             x:Class="Dartmania.Views.GameViewPage"
-             x:DataType="viewmodel:GameViewModel"
+             x:Class="Dartmania.Views.PlayerGameSoloPage"
+             x:DataType="viewmodel:PlayerGameSoloModel"
              Shell.PresentationMode="Modal">
     <StackLayout
         Padding="10"
@@ -18,27 +18,8 @@
                 FontAttributes="Bold"
                 HorizontalOptions="Center">
         </Label>
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition />
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition />
-                <ColumnDefinition />
-            </Grid.ColumnDefinitions>
-            <Label x:Name="LblResult"
-                BackgroundColor="green"
-                Padding="15"
-                Margin="0,0,0,0"
-                Text="501"
-                TextColor="White"
-                FontSize="60"
-                FontAttributes="Bold"
-                Grid.Column="0"
-                HorizontalOptions="Center">
-            </Label>
-            <Label x:Name="LblResult2"
-                BackgroundColor="red"
+        <Label x:Name="LblResult"
+                BackgroundColor="#2c2c2c"
                 Padding="15"
                 Margin="0,0,0,0"
                 Text="501"
@@ -47,8 +28,7 @@
                 FontAttributes="Bold"
                 Grid.Column="1"
                 HorizontalOptions="Center">
-            </Label>
-        </Grid>
+        </Label>
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition />
