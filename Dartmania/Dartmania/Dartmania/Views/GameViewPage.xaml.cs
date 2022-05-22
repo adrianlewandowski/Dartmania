@@ -12,7 +12,7 @@ namespace Dartmania.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class GameViewPage : ContentPage
     {
-        public int flagaGracz = 1;
+        public int playerFlag = 1;
         public GameModel currentGame = new GameModel();
         public int throwCounter = 3;
         private string finishCounter;
@@ -42,7 +42,7 @@ namespace Dartmania.Views
         }
         private void BtnCommon_Clicked(object sender, EventArgs e)
         {
-            if (flagaGracz == 1)
+            if (playerFlag == 1)
             {
                 var button = sender as Button;
                 int CurrentThrow = Convert.ToInt32(button.Text);
@@ -69,9 +69,10 @@ namespace Dartmania.Views
                 }
                 if (currentGame.Score1 == 0 && multiply == 2)
                 {
-                    var avg = Math.Round(Queryable.Average(currentGame.ThrowsPlayer1.AsQueryable()));
+                    var avg1 = Math.Round(Queryable.Average(currentGame.ThrowsPlayer1.AsQueryable()));
+                    var avg2 = Math.Round(Queryable.Average(currentGame.ThrowsPlayer2.AsQueryable()));
 
-                    AlertFinish("Game Ended", "Throws: " + currentGame.ThrowsPlayer1.Count() + "\n" + "Average score: " + avg, "Return");
+                    AlertFinish("Game Ended, Player 1 wins", $"Throws - Player  1: {currentGame.ThrowsPlayer1.Count()} \nAverage score - Player 1: {avg1} \nThrows - Player 2: {currentGame.ThrowsPlayer2.Count()} \nAverage score - Player 2: {avg2} \n ", "Return");
                     currentGame.Score1 = 501;
                 }
                 Throw();
@@ -105,9 +106,10 @@ namespace Dartmania.Views
                 }
                 if (currentGame.Score2 == 0 && multiply == 2)
                 {
-                    var avg = Math.Round(Queryable.Average(currentGame.ThrowsPlayer2.AsQueryable()));
+                    var avg1 = Math.Round(Queryable.Average(currentGame.ThrowsPlayer1.AsQueryable()));
+                    var avg2 = Math.Round(Queryable.Average(currentGame.ThrowsPlayer2.AsQueryable()));
 
-                    AlertFinish("Game Ended", "Throws: " + currentGame.ThrowsPlayer2.Count() + "\n" + "Average score: " + avg, "Return");
+                    AlertFinish("Game Ended, Player 2 wins", $"Throws - Player 2: {currentGame.ThrowsPlayer2.Count()} \nAverage score - Player 2: {avg2} \nThrows - Player 1: {currentGame.ThrowsPlayer1.Count()} \nAverage score - Player 1: {avg1} \n ", "Return");
                     currentGame.Score2 = 501;
                 }
                 Throw();
@@ -118,7 +120,7 @@ namespace Dartmania.Views
 
         void Counter()
         {
-            if (flagaGracz == 1)
+            if (playerFlag == 1)
             {
                 if ((throwCounter == 3) && (currentGame.Score1 <= 170))
                 {
@@ -164,11 +166,11 @@ namespace Dartmania.Views
             throwCounter--;
             if (throwCounter == 0)
             {
-                if (flagaGracz == 1)
+                if (playerFlag == 1)
                 {
                     LblResult.BackgroundColor = Color.Red;
                     LblResult2.BackgroundColor = Color.Green;
-                    flagaGracz = 2;
+                    playerFlag = 2;
                     throwCounter = 3;
                     LblThrows.Text = "| | |";
                 }
@@ -176,7 +178,7 @@ namespace Dartmania.Views
                 {
                     LblResult.BackgroundColor = Color.Green;
                     LblResult2.BackgroundColor = Color.Red;
-                    flagaGracz = 1;
+                    playerFlag = 1;
                     throwCounter = 3;
                     LblThrows.Text = "| | |";
                 }
@@ -221,7 +223,7 @@ namespace Dartmania.Views
         }
         private void BtnClear_Clicked(object sender, EventArgs e)
         {
-            if (flagaGracz == 1)
+            if (playerFlag == 1)
             {
                 ThrowUndo();
                 if (currentGame.ThrowsPlayer1.Count() > 0)
