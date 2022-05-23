@@ -6,6 +6,7 @@ using Xamarin.Forms.Xaml;
 using System.Linq;
 using Dartmania.Services.Points_Calculator;
 using System.Collections.Generic;
+using Dartmania.Services;
 
 namespace Dartmania.Views
 {
@@ -16,6 +17,7 @@ namespace Dartmania.Views
         public GameModel currentGame = new GameModel();
         public int throwCounter = 3;
         private string finishCounter;
+        public PlayerService playerService = (PlayerService)DependencyService.Get<IPlayerService>();
         public string FinishCounter
         {
             get { return finishCounter; }
@@ -71,7 +73,8 @@ namespace Dartmania.Views
                 {
                     var avg1 = Math.Round(Queryable.Average(currentGame.ThrowsPlayer1.AsQueryable()));
                     var avg2 = Math.Round(Queryable.Average(currentGame.ThrowsPlayer2.AsQueryable()));
-
+                    playerService.UpdateScore("Adrian",avg1);
+                    playerService.UpdateScore("Adam", avg2);
                     AlertFinish("Game Ended, Player 1 wins", $"Throws - Player  1: {currentGame.ThrowsPlayer1.Count()} \nAverage score - Player 1: {avg1} \nThrows - Player 2: {currentGame.ThrowsPlayer2.Count()} \nAverage score - Player 2: {avg2} \n ", "Return");
                     currentGame.Score1 = 501;
                 }

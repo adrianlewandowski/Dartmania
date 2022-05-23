@@ -46,7 +46,5 @@ namespace Dartmania.ViewModels
             var route = $"{nameof(AddPlayerPage)}?Name=Enter Name";
             await Shell.Current.GoToAsync(route);
         }
-
-
     }
 }

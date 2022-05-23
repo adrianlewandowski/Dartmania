@@ -61,5 +61,22 @@ namespace Dartmania.Services
             throw new NotImplementedException();
         }
 
+        public async Task UpdateScore(string name, double score)
+        {
+            await Init();
+            var player = await db.Table<Player>()
+                .FirstOrDefaultAsync(c => c.Name == name);
+            if(player.AverageScore != 0)
+            {
+                player.AverageScore = (player.AverageScore + score) / 2;
+            }
+            else
+            {
+                player.AverageScore = score;
+            }
+
+            await db.UpdateAsync(player);
+        }
+
     }
 }

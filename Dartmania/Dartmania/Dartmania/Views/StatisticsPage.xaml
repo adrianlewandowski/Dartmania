@@ -1,33 +1,37 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:Dartmania.ViewModels"
+             x:Name="StatisticPage"
              x:Class="Dartmania.Views.StatisticsPage"
-             BackgroundColor="#2c2c2c">
-  <ListView x:Name="MyListView"
-            ItemsSource="{Binding .}"
-            ItemTapped="Handle_ItemTapped"
+             xmlns:model="clr-namespace:Dartmania.Models"
+             xmlns:viewmodels="clr-namespace:Dartmania.ViewModels"
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+             x:DataType="local:StatisticsViewModel"
+             BackgroundColor="#2c2c2c"
+             >
+    <ContentPage.BindingContext>
+        <local:StatisticsViewModel/>
+    </ContentPage.BindingContext>
+    <Grid>
+        <ListView
+            x:Name="PlayersList"
+            IsRefreshing="{Binding IsBusy, Mode=OneWay}"
+            RefreshCommand="{Binding RefreshCommand}"
+            ItemsSource="{Binding Player}"
+            BackgroundColor="Transparent"
+            SelectionMode="Single"
             CachingStrategy="RecycleElement">
-    <!--Built in Cells-->
-    <ListView.ItemTemplate>
-        <DataTemplate>
-            <TextCell Text="{Binding .}" />
-        </DataTemplate>
-    </ListView.ItemTemplate>
-
-    <!--Custom View Cells-->
-    <!--
-    <ListView.ItemTemplate>
-      <DataTemplate>
-        <ViewCell>
-          <StackLayout>
-            <Label Text="{Binding Text}"
-                   Style="{DynamicResource ListItemTextStyle}" />
-            <Label Text="{Binding Detail}"
-                   Style="{DynamicResource ListItemDetailTextStyle}"/>
-          </StackLayout>
-        </ViewCell>
-      </DataTemplate>
-    </ListView.ItemTemplate>
-    -->
-  </ListView>
+            <ListView.ItemTemplate>
+                <DataTemplate x:DataType="model:Player">
+                    <ViewCell>
+                        <Grid>
+                            <Label Text="{Binding Name}" FontAttributes="Bold" TextColor="White" />
+                            <Label Grid.Column="1" Text="{Binding AverageScore}" TextColor="White" />
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
 </ContentPage>
