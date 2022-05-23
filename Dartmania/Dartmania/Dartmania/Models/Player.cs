@@ -10,7 +10,7 @@ namespace Dartmania.Models
         [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
         public string Name { get; set; }
-        public int AverageScore { get; set; }
+        public double AverageScore { get; set; }
         public int BestScore { get; set; }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Dartmania.ViewModels;
+using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
@@ -27,6 +28,13 @@ namespace Dartmania.Views
 
             //Deselect Item
             ((ListView)sender).SelectedItem = null;
+        }
+        protected override async void OnAppearing()
+        {
+            base.OnAppearing();
+            var vm = (StatisticsViewModel)BindingContext;
+            if (vm.Player.Count == 0)
+                await vm.RefreshCommand.ExecuteAsync();
         }
     }
 }

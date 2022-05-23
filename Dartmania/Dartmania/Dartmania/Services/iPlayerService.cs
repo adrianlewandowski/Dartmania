@@ -12,5 +12,6 @@ namespace Dartmania.Services
         Task<IEnumerable<Player>> GetPlayers();
         Task<Player> GetPlayer(string name);
         Task RemovePlayer(int id);
+        Task UpdateScore(string name, double score);
     }
 }
