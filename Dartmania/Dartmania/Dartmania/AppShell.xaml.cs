@@ -15,6 +15,7 @@ namespace Dartmania
             Routing.RegisterRoute(nameof(PlayerGameSoloPage), typeof(PlayerGameSoloPage));
             Routing.RegisterRoute(nameof(AddPlayerPage), typeof(AddPlayerPage));
             Routing.RegisterRoute(nameof(GameViewPage), typeof(GameViewPage));
+            Routing.RegisterRoute(nameof(DartboardPage), typeof(DartboardPage));
         }
 
     }

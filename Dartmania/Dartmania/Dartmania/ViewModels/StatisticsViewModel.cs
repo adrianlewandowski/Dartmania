@@ -27,7 +27,6 @@ namespace Dartmania.ViewModels
             playerService = DependencyService.Get<IPlayerService>();
             //PlayerGroups = new ObservableRangeCollection<Grouping<string, Player>>();
         }
-        Player previouslySelected;
         Player selectedPlayer;
         public Player SelectedPlayer
         {
@@ -35,19 +34,6 @@ namespace Dartmania.ViewModels
             set => SetProperty(ref selectedPlayer, value);
         }
 
-        async Task Selected(object args)
-        {
-            var player = args as Player;
-            if (player == null)
-                return;
-
-            SelectedPlayer = null;
-
-
-            //await AppShell.Current.GoToAsync(nameof(AddMyCoffeePage));
-            //await Application.Current.MainPage.DisplayAlert("Selected", coffee.Name, "OK");
-
-        }
         async Task Refresh()
         {
             IsBusy = true;

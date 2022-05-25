@@ -44,6 +44,14 @@
                         TextColor="White" />
             </StackLayout>
         </ScrollView>
+        <ScrollView Grid.Row="3">
+            <StackLayout Orientation="Vertical" Padding="30,24,30,24" Spacing="10">
+                <Button Margin="0,10,0,0" Text="Board"
+                        Command="{Binding Dart}"
+                        BackgroundColor="#ff6740"
+                        TextColor="White" />
+            </StackLayout>
+        </ScrollView>
     </Grid>
 
 </ContentPage>
