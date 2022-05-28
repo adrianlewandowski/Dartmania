@@ -6,6 +6,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="images\board.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="images\board.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AiForms.Effects" Version="1.6.11" />
     <PackageReference Include="Refractored.MvvmHelpers" Version="1.6.2" />
     <PackageReference Include="SkiaSharp.Views.Forms" Version="2.88.0" />
     <PackageReference Include="SQLite" Version="3.13.0" />

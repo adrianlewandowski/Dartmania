@@ -15,5 +15,6 @@ namespace Dartmania.ViewModels
         {
             Title = "Dartmania";
         }
+
     }
 }
