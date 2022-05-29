@@ -60,14 +60,14 @@ namespace Dartmania.Views
                 case SKTouchAction.Pressed:
                     var cords = e.Location;
                     var x = Remap(e.Location.X, 0, width, - 200, 200);
-                    var y = Remap(e.Location.Y, 0, height , - 200 * ratio, 200 * ratio);
+                    var y = Remap(e.Location.Y, 0, height , - 200 * ratio, 200 * ratio) * -1;
                     var distance = calculateDistance(x, y);
-                    var angle = calculateAngle(y, x);
-                    if (angle < 0) 
-                    {
-                        angle += 360;
-                    }
-                    var score = angleToScore((float)angle);
+                    var angle = calculateAngle(y, x) * 180/Math.PI;
+                    if (angle < 0) angle += 360;
+                    var scoreWM = angleToScore((float)angle);
+                    var scoreM = distanceToMulitply((float)distance);
+                    var score = calculateScore(scoreWM, scoreM, (float)distance);
+
                     break;
             }
         }
@@ -95,7 +95,7 @@ namespace Dartmania.Views
             else if (angle >= 27 && angle < 45) score = 4;
             else if (angle >= 45 && angle < 63) score = 18;
             else if (angle >= 63 && angle < 81) score = 1;
-            else if (angle >= 81 && angle < 91) score = 20;
+            else if (angle >= 81 && angle < 99) score = 20;
             else if (angle >= 91 && angle < 117) score = 5;
             else if (angle >= 117 && angle < 135) score = 12;
             else if (angle >= 135 && angle < 153) score = 9;
@@ -125,13 +125,15 @@ namespace Dartmania.Views
 
             return multiply;
         }
-        /*public int calculateScore(float angle, float distance) 
+        public float calculateScore(float a, float b, float distance) 
         {
-            int score;
+            float score = a * b;
 
             if (distance <= 7.3) return 50;
             else if (distance > 7.3 && distance <= 17.3) return 25;
-        }*/
+
+            return score;
+        }
 
     }
 }
