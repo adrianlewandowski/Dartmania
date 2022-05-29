@@ -53,14 +53,14 @@ namespace Dartmania.Views
 
         private void OnTouching(object sender, SKTouchEventArgs e)
         {
-            float ratio = height / width;
+            float ratioH = height / width;
 
             switch (e.ActionType)
             {
                 case SKTouchAction.Pressed:
                     var cords = e.Location;
                     var x = Remap(e.Location.X, 0, width, - 200, 200);
-                    var y = Remap(e.Location.Y, 0, height , - 200 * ratio, 200 * ratio) * -1;
+                    var y = Remap(e.Location.Y, 0, height , - 200 * (float)1.15, 200 * (float)1.15) * -1;
                     var distance = calculateDistance(x, y);
                     var angle = calculateAngle(y, x) * 180/Math.PI;
                     if (angle < 0) angle += 360;
@@ -117,10 +117,10 @@ namespace Dartmania.Views
         public int distanceToMulitply(float distance) 
         {
             int multiply;
-            if (distance >= 17.3 && distance < 100.5) multiply = 1;
-            else if (distance >= 100.5 && distance < 111.7) multiply = 3;
-            else if (distance >= 111.7 && distance < 167.6) multiply = 1;
-            else if (distance >= 167.6 && distance < 180) multiply = 2;
+            if (distance >= 14.35 && distance < 86.32) multiply = 1;
+            else if (distance >= 86.32 && distance < 97.2) multiply = 3;
+            else if (distance >= 97.2 && distance < 145) multiply = 1;
+            else if (distance >= 145 && distance < 160) multiply = 2;
             else multiply = 0;
 
             return multiply;
@@ -129,8 +129,8 @@ namespace Dartmania.Views
         {
             float score = a * b;
 
-            if (distance <= 7.3) return 50;
-            else if (distance > 7.3 && distance <= 17.3) return 25;
+            if (distance <= 6) return 50;
+            else if (distance > 6 && distance <= 14.35) return 25;
 
             return score;
         }
